@@ -1,0 +1,2 @@
+# VuexyTemplate-Aaqib
+Optimized Template
