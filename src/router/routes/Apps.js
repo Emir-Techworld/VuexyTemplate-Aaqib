@@ -1,7 +1,7 @@
 // ** React Imports
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
-
+//CHnags
 const Chat = lazy(() => import('../../views/apps/chat'))
 const Todo = lazy(() => import('../../views/apps/todo'))
 const Email = lazy(() => import('../../views/apps/email'))
