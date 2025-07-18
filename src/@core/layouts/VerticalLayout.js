@@ -26,7 +26,7 @@ import SidebarComponent from './components/menu/vertical-menu'
 
 // ** Custom Hooks
 import { useRTL } from '@hooks/useRTL'
-import { useSkin } from '@hooks/useSkin'
+// import { useSkin } from '@hooks/useSkin'
 import { useLayout } from '@hooks/useLayout'
 import { useNavbarType } from '@hooks/useNavbarType'
 import { useFooterType } from '@hooks/useFooterType'
@@ -42,7 +42,7 @@ const VerticalLayout = props => {
 
   // ** Hooks
   const [isRtl, setIsRtl] = useRTL()
-  const { skin, setSkin } = useSkin()
+  // const { skin, setSkin } = useSkin()
   const { navbarType, setNavbarType } = useNavbarType()
   const { footerType, setFooterType } = useFooterType()
   const { navbarColor, setNavbarColor } = useNavbarColor()
@@ -145,7 +145,7 @@ const VerticalLayout = props => {
     >
       {!isHidden ? (
         <SidebarComponent
-          skin={skin}
+          // skin={skin}
           menu={menu}
           menuData={menuData}
           menuCollapsed={menuCollapsed}
@@ -158,8 +158,8 @@ const VerticalLayout = props => {
       <Navbar
         expand='lg'
         container={false}
-        light={skin !== 'dark'}
-        dark={skin === 'dark' || bgColorCondition}
+        // light={skin !== 'dark'}
+        // dark={skin === 'dark' || bgColorCondition}
         color={bgColorCondition ? navbarColor : undefined}
         className={classnames(
           `header-navbar navbar align-items-center ${navbarClasses[navbarType] || 'floating-nav'} navbar-shadow`
@@ -169,7 +169,7 @@ const VerticalLayout = props => {
           {navbar ? (
             navbar({ skin, setSkin, setMenuVisibility })
           ) : (
-            <NavbarComponent setMenuVisibility={setMenuVisibility} skin={skin} setSkin={setSkin} />
+            <NavbarComponent setMenuVisibility={setMenuVisibility} />
           )}
         </div>
       </Navbar>

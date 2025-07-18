@@ -4,9 +4,6 @@ import { lazy } from 'react'
 // ** Router imports
 import { useRoutes, Navigate } from 'react-router-dom'
 
-// ** Layouts
-import BlankLayout from '@layouts/BlankLayout'
-
 // ** Hooks Imports
 import { useLayout } from '@hooks/useLayout'
 
@@ -43,17 +40,14 @@ const Router = () => {
     },
     {
       path: '/login',
-      element: <BlankLayout />,
       children: [{ path: '/login', element: <Login /> }]
     },
     {
       path: '/auth/not-auth',
-      element: <BlankLayout />,
       children: [{ path: '/auth/not-auth', element: <NotAuthorized /> }]
     },
     {
       path: '*',
-      element: <BlankLayout />,
       children: [{ path: '*', element: <Error /> }]
     },
     ...allRoutes

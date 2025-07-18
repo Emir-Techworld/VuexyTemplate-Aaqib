@@ -5,9 +5,7 @@ import { Fragment } from 'react'
 import DashboardRoutes from './Dashboards'
 
 // ** Layouts
-import BlankLayout from '@layouts/BlankLayout'
 import VerticalLayout from '@src/layouts/VerticalLayout'
-import HorizontalLayout from '@src/layouts/HorizontalLayout'
 import LayoutWrapper from '@src/@core/layouts/components/layout-wrapper'
 
 // ** Route Components
@@ -18,9 +16,7 @@ import PrivateRoute from '@components/routes/PrivateRoute'
 import { isObjEmpty } from '@utils'
 
 const getLayout = {
-  blank: <BlankLayout />,
   vertical: <VerticalLayout />,
-  horizontal: <HorizontalLayout />
 }
 
 // ** Document title
@@ -31,9 +27,7 @@ const DefaultRoute = '/dashboard/ecommerce'
 
 // ** Merge Routes
 const Routes = [
-  // ...AuthenticationRoutes,
   ...DashboardRoutes,
-  // ...PagesRoutes,
 ]
 
 const getRouteMeta = route => {
@@ -91,7 +85,7 @@ const MergeLayoutRoutes = (layout, defaultLayout) => {
 
 const getRoutes = layout => {
   const defaultLayout = layout || 'vertical'
-  const layouts = ['vertical', 'horizontal', 'blank']
+  const layouts = ['vertical', 'blank']
 
   const AllRoutes = []
 

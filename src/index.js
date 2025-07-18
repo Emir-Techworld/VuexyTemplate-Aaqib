@@ -10,16 +10,12 @@ import { Provider } from 'react-redux'
 // ** Intl, CASL & ThemeColors Context
 import ability from './configs/acl/ability'
 import { AbilityContext } from './utility/context/Can'
-import { ThemeContext } from './utility/context/ThemeColors'
 
 // ** ThemeConfig
 import themeConfig from './configs/themeConfig'
 
 // ** Toast
 import { Toaster } from 'react-hot-toast'
-
-// ** i18n
-import './configs/i18n'
 
 // ** Spinner (Splash Screen)
 import Spinner from './@core/components/spinner/Fallback-spinner'
@@ -60,10 +56,8 @@ root.render(
     <Provider store={store}>
       <Suspense fallback={<Spinner />}>
         <AbilityContext.Provider value={ability}>
-          <ThemeContext>
-            <LazyApp />
-            <Toaster position={themeConfig.layout.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-          </ThemeContext>
+          <LazyApp />
+          <Toaster position={themeConfig.layout.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
         </AbilityContext.Provider>
       </Suspense>
     </Provider>

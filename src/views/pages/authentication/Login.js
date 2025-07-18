@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 // ** Custom Hooks
-import { useSkin } from '@hooks/useSkin'
+// import { useSkin } from '@hooks/useSkin'
 import useJwt from '@src/auth/jwt/useJwt'
 
 // ** Third Party Components
@@ -71,7 +71,7 @@ const defaultValues = {
 
 const Login = () => {
   // ** Hooks
-  const { skin } = useSkin()
+  // const { skin } = useSkin()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const ability = useContext(AbilityContext)
@@ -82,7 +82,7 @@ const Login = () => {
     formState: { errors }
   } = useForm({ defaultValues })
 
-  const source = skin === 'dark' ? illustrationsDark : illustrationsLight
+  const source = illustrationsLight;
 
   const onSubmit = data => {
     if (Object.values(data).every(field => field.length > 0)) {
