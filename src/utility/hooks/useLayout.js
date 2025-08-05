@@ -1,41 +1,32 @@
-//** React Imports
-import { useEffect } from 'react'
-
-// ** Store Imports
-import { useDispatch, useSelector } from 'react-redux'
-import { handleLayout, handleLastLayout } from '@store/layout'
+// ** React Imports
+import { useEffect, useState } from 'react'
 
 export const useLayout = () => {
-  // ** Hooks
-  const dispatch = useDispatch()
-  const store = useSelector(state => state.layout)
+  const [layout, setLayout] = useState('vertical')
+  const [lastLayout, setLastLayout] = useState('vertical')
 
-  const setLayout = value => {
-    dispatch(handleLayout(value))
-  }
+  const breakpoint = 1200
 
-  const setLastLayout = value => {
-    dispatch(handleLastLayout(value))
-  }
-
-  if (window) {
-    const breakpoint = 1200
-
-    useEffect(() => {
-      if (window.innerWidth < breakpoint) {
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= breakpoint && lastLayout !== 'vertical' && layout !== 'vertical') {
         setLayout('vertical')
       }
+      if (window.innerWidth >= breakpoint && lastLayout !== layout) {
+        setLayout(lastLayout)
+      }
+    }
 
-      window.addEventListener('resize', () => {
-        if (window.innerWidth <= breakpoint && store.lastLayout !== 'vertical' && store.layout !== 'vertical') {
-          setLayout('vertical')
-        }
-        if (window.innerWidth >= breakpoint && store.lastLayout !== store.layout) {
-          setLayout(store.lastLayout)
-        }
-      })
-    }, [store.layout])
-  }
+    if (window.innerWidth < breakpoint) {
+      setLayout('vertical')
+    }
 
-  return { layout: store.layout, setLayout, lastLayout: store.lastLayout, setLastLayout }
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [layout, lastLayout])
+
+  return { layout, setLayout, lastLayout, setLastLayout }
 }

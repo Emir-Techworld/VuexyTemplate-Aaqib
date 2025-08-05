@@ -3,14 +3,6 @@ import { Suspense, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
-// ** Redux Imports
-import { store } from './redux/store'
-import { Provider } from 'react-redux'
-
-// ** Intl, CASL & ThemeColors Context
-import ability from './configs/acl/ability'
-import { AbilityContext } from './utility/context/Can'
-
 // ** ThemeConfig
 import themeConfig from './configs/themeConfig'
 
@@ -22,9 +14,6 @@ import Spinner from './@core/components/spinner/Fallback-spinner'
 
 // ** Ripple Button
 import './@core/components/ripple-button'
-
-// ** Fake Database
-import './@fake-db'
 
 // ** PrismJS
 import 'prismjs'
@@ -53,14 +42,10 @@ const root = createRoot(container)
 
 root.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <Suspense fallback={<Spinner />}>
-        <AbilityContext.Provider value={ability}>
-          <LazyApp />
-          <Toaster position={themeConfig.layout.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-        </AbilityContext.Provider>
-      </Suspense>
-    </Provider>
+    <Suspense fallback={<Spinner />}>
+      <LazyApp />
+      <Toaster position={themeConfig.layout.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+    </Suspense>
   </BrowserRouter>
 )
 
