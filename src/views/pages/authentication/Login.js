@@ -12,16 +12,18 @@ import {
   Card,
   CardBody,
   CardTitle,
-  Row
 } from "reactstrap";
 import InputPasswordToggle from "@components/input-password-toggle";
 import toast from "react-hot-toast";
 import "@styles/react/pages/page-authentication.scss";
 
+// It's a good practice to store keys in a constant to avoid typos and make them reusable.
+const USER_DATA_KEY = "userData";
+
 const Login = () => {
   const navigate = useNavigate();
   const [disableButton, setDisableButton] = useState(false);
-
+  
   const {
     control,
     handleSubmit,
@@ -33,38 +35,37 @@ const Login = () => {
     }
   });
 
-
-const onSubmit = async ({ username, password }) => {
-  setDisableButton(true)
-
-  try {
-    const payload = createLoginPayload(username, password)
-    const res = await loginUser(payload)
-
-    if (res?.token && res?.expiration) {
-      // Store everything in one object
-      const userData = {
-        token: res.token,
-        expiration: res.expiration,
-        userName: username
+  const onSubmit = async ({ username, password }) => {
+    setDisableButton(true)
+  
+    try {
+      const payload = createLoginPayload(username, password)
+      const res = await loginUser(payload)
+  
+      if (res?.token && res?.expiration) {
+        // Store everything in one object
+        const userData = {
+          token: res.token,
+          expiration: res.expiration,
+          userName: username
+        }
+  
+        localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData))
+  
+        toast.success("Logged in successfully!")
+        
+        navigate(getHomeRouteForLoggedInUser());
+  
+      } else {
+        throw new Error("Invalid login response")
       }
-
-      localStorage.setItem("userData", JSON.stringify(userData))
-
-      toast.success("Logged in successfully!")
-      
-      navigate(getHomeRouteForLoggedInUser());
-
-    } else {
-      throw new Error("Invalid login response")
+    } catch (err) {
+      console.error("Login error:", err)
+      toast.error(err?.response?.data?.message || "Login failed")
+    } finally {
+      setDisableButton(false)
     }
-  } catch (err) {
-    console.error("Login error:", err)
-    toast.error(err?.response?.data?.message || "Login failed")
-  } finally {
-    setDisableButton(false)
   }
-}
 
   return (
     <div className="auth-wrapper auth-basic px-2">
@@ -74,7 +75,7 @@ const onSubmit = async ({ username, password }) => {
             <CardTitle tag="h4" className="mb-1">
               Welcome to Emir-Admin 👋
             </CardTitle>
-            <Row tag="form" className="auth-login-form mt-2" onSubmit={handleSubmit(onSubmit)}>
+            <form className="auth-login-form mt-2" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-1">
                 <Label className="form-label" for="username">
                   Username
@@ -114,7 +115,7 @@ const onSubmit = async ({ username, password }) => {
               <Button type="submit" color="primary" block disabled={disableButton}>
                 Sign in
               </Button>
-            </Row>
+            </form>
           </CardBody>
         </Card>
       </div>
