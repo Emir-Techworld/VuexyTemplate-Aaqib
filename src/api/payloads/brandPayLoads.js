@@ -1,12 +1,12 @@
 // Creates a payload for creating a new brand.
-export const createBrandPayload = (brandName, description, createdBy) => ({
+export const createBrandPayload = (brandName, description) => ({
   brandName,
   description,
-  createdBy,
+  createdBy: JSON.parse(localStorage.getItem('userData'))?.userName,
 });
 
 // Creates a payload for updating an existing brand.
-export const updateBrandPayload = (brand, modifiedBy) => ({
+export const updateBrandPayload = (brand) => ({
   ...brand,
-  modifiedBy,
+  modifiedBy: JSON.parse(localStorage.getItem('userData'))?.userName,
 });

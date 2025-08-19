@@ -2,7 +2,7 @@ import { lazy } from 'react'
 
 import { useRoutes, Navigate } from 'react-router-dom'
 
-import { getUserData, getHomeRouteForLoggedInUser } from '../utility/Utils'
+import { getHomeRouteForLoggedInUser } from '../utility/Utils'
 
 // ** GetRoutes
 import { getRoutes } from './routes'
@@ -13,24 +13,15 @@ const Login = lazy(() => import('../views/pages/authentication/Login'))
 const Router = () => {
   const allRoutes = getRoutes()
 
-  const getHomeRoute = () => {
-    const user = getUserData()
-    if (user) {
-      return getHomeRouteForLoggedInUser()
-    } else {
-      return '/login'
-    }
-  }
-
   const routes = useRoutes([
     {
       path: '/',
       index: true,
-      element: <Navigate replace to={getHomeRoute()} />
+      element: <Navigate replace to={getHomeRouteForLoggedInUser()} />
     },
     {
       path: '/login',
-      children: [{ path: '/login', element: <Login /> }]
+      element: <Login />
     },
     ...allRoutes
   ])

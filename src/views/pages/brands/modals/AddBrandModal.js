@@ -3,7 +3,8 @@ import toast from 'react-hot-toast'
 import { useForm, Controller } from 'react-hook-form'
 
 // ** api
-import { addBrandApi } from '../../../api/brand'
+import { addBrandApi } from '../../../../api/brand'
+import { createBrandPayload } from '../../../../api/payloads/brandPayLoads'
 
 // ** Reactstrap Imports
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form } from 'reactstrap'
@@ -13,14 +14,14 @@ const AddBrandModal = ({ open, handleModal, onAddSuccess }) => {
     const {
         reset,
         control,
-        setError,
         handleSubmit,
         formState: { errors }
     } = useForm()
 
     const onSubmit = async (data) => {
         try {
-            await addBrandApi(data)
+            const payload = createBrandPayload(data.brandName, data.description)
+            await addBrandApi(payload)
             toast.success('Brand added successfully!')
             if (onAddSuccess) {
                 onAddSuccess()

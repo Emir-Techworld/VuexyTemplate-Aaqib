@@ -8,12 +8,6 @@ export default [
     icon: <Home size={20} />,
     badge: 'light-warning',
     children: [
-      {
-        id: 'eCommerceDash',
-        title: 'eCommerce',
-        icon: <Circle size={12} />,
-        navLink: '/dashboard/ecommerce'
-      },
        {
         id: 'brands',
         title: 'Brands',
