@@ -10,7 +10,7 @@ import { ArrowUp } from 'react-feather'
 import { Navbar, Button } from 'reactstrap'
 
 // ** Configs
-import themeConfig from '@configs/themeConfig'
+import themeConfig from '../layouts/configs/themeConfig'
 
 // ** Custom Components
 import ScrollToTop from '@components/scrolltop'

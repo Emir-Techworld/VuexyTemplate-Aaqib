@@ -14,7 +14,6 @@ const Router = () => {
   const allRoutes = getRoutes()
 
   const getHomeRoute = () => {
-    console.log("start");
     const user = getUserData()
     if (user) {
       return getHomeRouteForLoggedInUser()

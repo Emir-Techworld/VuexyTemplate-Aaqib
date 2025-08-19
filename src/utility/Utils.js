@@ -9,8 +9,6 @@ export const getUserData = () => JSON.parse(localStorage.getItem('userData'))
 
 export const getHomeRouteForLoggedInUser = () => {
 
-  console.log("getHomeRouteForLoggedInUser called");
-
   const userData = JSON.parse(localStorage.getItem('userData'))
 
   if (!userData || !userData.token || !userData.expiration) return '/login'
