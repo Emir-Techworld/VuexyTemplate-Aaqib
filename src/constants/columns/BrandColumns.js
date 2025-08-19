@@ -1,6 +1,6 @@
 import { getActionsColumn } from './ActionColumn'
 
-const Brandscolumns = ({ onView, onEdit, onDelete }) => [
+export const getBrandColumns = ({ onView, onEdit, onDelete }) => [
     {
         name: "Brand Name",
         sortable: true,
@@ -28,5 +28,3 @@ const Brandscolumns = ({ onView, onEdit, onDelete }) => [
     },
     getActionsColumn({ onView, onEdit, onDelete })
 ];
-
-export default Brandscolumns

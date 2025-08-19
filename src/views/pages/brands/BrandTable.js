@@ -11,7 +11,7 @@ const MySwal = withReactContent(Swal)
 
 // ** Table Data & Columns
 import { GetAllBrandsApi, GET_BRAND_BY_ID, deleteBrandApi } from '../../../api/brand'
-import Brandscolumns from '../../../constants/columns/BrandColumns'
+import { getBrandColumns } from '../../../constants/columns/BrandColumns'
 import CustomPagination from '../../components/CustomPagination'
 import SearchFilter from '../../components/SearchFilter'
 import useFilter from '../../../utility/hooks/useSearchFilter'
@@ -116,7 +116,7 @@ const BrandTable = () => {
   // ** Columns for DataTable
   // Using useMemo to memoize columns to prevent unnecessary re-renders
   const columns = useMemo(
-    () => Brandscolumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete }),
+    () => getBrandColumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete }),
     [handleView, handleEdit, handleDelete]
   )
 
