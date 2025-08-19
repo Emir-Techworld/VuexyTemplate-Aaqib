@@ -4,7 +4,6 @@ import { useState } from "react";
 import { createLoginPayload } from "../../../api/payloads/authpayloads";
 import { loginUser } from "../../../api/auth";
 import { getHomeRouteForLoggedInUser } from '../../../utility/Utils';
-import { DefaultRoute } from '../../../router/routes';
 import {
   Label,
   Input,

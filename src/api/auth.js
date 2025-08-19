@@ -1,11 +1,9 @@
 import api from "./axiosInstance";
-
-const LOGIN_ENDPOINT = "api/Authenticate/login";
-const REGISTER_ENDPOINT = "api/Authenticate/login";
+import { AUTH_ENDPOINTS } from "./endpoints";
 
 export const loginUser = async (payload) => {
   try {
-    const response = await api.post(LOGIN_ENDPOINT, payload);
+    const response = await api.post(AUTH_ENDPOINTS.LOGIN, payload);
     return response.data; // return only data, not full response
   } catch (error) {
     console.error("Login error:", error.response?.data || error.message);
@@ -15,7 +13,7 @@ export const loginUser = async (payload) => {
 
 export const registerUser = async (payload) => {
   try {
-    const response = await api.post(REGISTER_ENDPOINT, payload);
+    const response = await api.post(AUTH_ENDPOINTS.REGISTER, payload);
     return response.data;
   } catch (error) {
     console.error("Register error:", error.response?.data || error.message);

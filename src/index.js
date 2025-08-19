@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
 // ** ThemeConfig
-import themeConfig from './configs/themeConfig'
+import themeConfig from '../src/@core/layouts/configs/themeConfig'
 
 // ** Toast
 import { Toaster } from 'react-hot-toast'
