@@ -13,7 +13,7 @@ import { isObjEmpty } from '@utils'
 
 // ** Title & Default Route
 const TemplateTitle = '%s - Vuexy React Admin Template'
-const DefaultRoute = '/pages/brands'
+const DefaultRoute = '/admin/brands'
 
 // ** All Routes
 const Routes = [...DashboardRoutes]

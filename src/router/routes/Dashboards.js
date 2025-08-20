@@ -1,10 +1,10 @@
 import { lazy } from 'react'
 
-const Brands = lazy(() => import('../../views/pages/brands'))
+const Brands = lazy(() => import('../../views/admin/brands'))
 
 const DashboardRoutes = [
   {
-    path: '/pages/brands',
+    path: '/admin/brands',
     element: <Brands />,
   }
 ]
