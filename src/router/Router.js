@@ -8,7 +8,7 @@ import { getHomeRouteForLoggedInUser } from '../utility/Utils'
 import { getRoutes } from './routes'
 
 // ** Components
-const Login = lazy(() => import('../views/pages/authentication/Login'))
+const Login = lazy(() => import('../views/admin/authentication/Login'))
 
 const Router = () => {
   const allRoutes = getRoutes()

@@ -12,7 +12,7 @@ export default [
         id: 'brands',
         title: 'Brands',
         icon: <Circle size={12} />,
-        navLink: '/pages/brands'
+        navLink: '/admin/brands'
       }
     ]
   }
